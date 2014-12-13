@@ -217,6 +217,8 @@ def _get_file_data(interfaces):
                 if gateway4:
                     file_data += "    gateway %s\n" % gateway4
                     gateway4 = None
+                if dns:
+                    file_data += "    dns-nameservers %s\n" % ' '.join(dns)
 
             if ip6:
                 file_data += "iface %s inet6 static\n" % ifname
@@ -226,10 +228,8 @@ def _get_file_data(interfaces):
                 if gateway6:
                     file_data += "    gateway %s\n" % gateway6
                     gateway6 = None
-
-            if dns:
-                file_data += "    dns-nameservers %s\n" % ' '.join(dns)
-                dns = None
+                if dns:
+                    file_data += "    dns-nameservers %s\n" % ' '.join(dns)
 
             ifname_suffix_num += 1
 
